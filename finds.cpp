@@ -1,9 +1,11 @@
 /*
  *  Find-S Machine Exercise
- *  Template created by Tristan M. Basa
  *  Department of Computer Science
  *  University of the Philippines, Diliman
  *
+ *	Concept learning algorithm 
+ *	Fernando A. Lovera
+ *  Tue 17 Feb
  */
 
 #include <stdio.h>

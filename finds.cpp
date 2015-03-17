@@ -1,8 +1,5 @@
 /*
- *  Find-S Machine Exercise
- *  Department of Computer Science
- *  University of the Philippines, Diliman
- *
+ *  Find-S Machine Learning
  *	Concept learning algorithm 
  *	Fernando A. Lovera
  *  Tue 17 Feb

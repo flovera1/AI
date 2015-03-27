@@ -32,7 +32,7 @@ the sum of square differences between the two arrays of numbers.
 The 'length' parameter will tell you how many of the parameters you are 
 considering.
 """
- def euclideanDistance(instance1, instance2, length):
+def euclideanDistance(instance1, instance2, length):
 	distance      = 0
 	for x in range(length):
 		distance += pow((instance1[x] - instance2[x]), 2)
@@ -48,15 +48,17 @@ def getNeighbors(trainingSet, testInstance, k):
 	for x in range(len(trainingSet)):
 		dist           = euclideanDistance(testInstance, trainingSet[x], length)
 		distances.append((trainingSet[x], dist))
-	distances.sort(key = operator.itemgetter(1))
+	distances.sort(key = operator.itemgetter(1)) #sorting the distances by the dist value
 	for x in range(k):
-		print "---- example ----"
-		print distances[x][0]
-		print "---- end -----"
 		neighbors.append(distances[x][0])
 	return neighbors
+"""
+We need to devise a predicted response based on the neighbors
+We can do this by allowing each neighbor to vote for their class attribute,
+and take the majority vote as the prediction.
+"""
 def getResponse(neighbors):
-	classVotes   = {}
+	classVotes   = {} # dictionary
 	for x in range(len(neighbors)):
 		response = neighbors[x][-1]
 		if response in classVotes:
@@ -76,13 +78,13 @@ def main():
 	# prepare data
 	trainingSet = []
 	testSet     = []
-	split       = 0.67
+	split       = 0.67 # convenient value to split the data
 	loadDataset('iris.data', split, trainingSet, testSet)
 	print 'Train set: ' + repr(len(trainingSet))
 	print 'Test set: ' + repr(len(testSet))
 	# generate predictions
 	predictions = []
-	k           = 3
+	k           = 3 # get the 3 closest neighbourns
 	for x in range(len(testSet)):
 		neighbors = getNeighbors(trainingSet, testSet[x], k)
 		result    = getResponse(neighbors)

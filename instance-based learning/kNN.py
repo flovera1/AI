@@ -8,6 +8,12 @@ import csv
 import random
 import math
 import operator
+"""
+First open the file (filename) as csv. 
+Then split the data in trainingSet(dataset) and test set.
+We also need transform the string values into numbers 
+that we can work with.
+"""
 def loadDataset(filename, split, trainingSet = [] , testSet = []):
 	with open(filename, 'rb') as csvfile:
 	    lines   = csv.reader(csvfile)
@@ -19,20 +25,34 @@ def loadDataset(filename, split, trainingSet = [] , testSet = []):
 	            trainingSet.append(dataset[x])
 	        else:
 	            testSet.append(dataset[x])
+"""
+To compare the similarities between two instances we use the euclidean
+distance between bothe instances, which is defined as the square root of
+the sum of square differences between the two arrays of numbers.
+The 'length' parameter will tell you how many of the parameters you are 
+considering.
+"""
  def euclideanDistance(instance1, instance2, length):
-	distance = 0
+	distance      = 0
 	for x in range(length):
 		distance += pow((instance1[x] - instance2[x]), 2)
 	return math.sqrt(distance)
+"""
+Process of calculating the distance for all instances 
+and selecting a subset with the smallest distance values.
+"""
 def getNeighbors(trainingSet, testInstance, k):
-	distances = []
-	length    = len(testInstance)-1
+	distances          = []
+	length             = len(testInstance)-1
+	neighbors          = []
 	for x in range(len(trainingSet)):
-		dist  = euclideanDistance(testInstance, trainingSet[x], length)
+		dist           = euclideanDistance(testInstance, trainingSet[x], length)
 		distances.append((trainingSet[x], dist))
-	distances.sort(key=operator.itemgetter(1))
-	neighbors = []
+	distances.sort(key = operator.itemgetter(1))
 	for x in range(k):
+		print "---- example ----"
+		print distances[x][0]
+		print "---- end -----"
 		neighbors.append(distances[x][0])
 	return neighbors
 def getResponse(neighbors):
@@ -54,9 +74,9 @@ def getAccuracy(testSet, predictions):
 	
 def main():
 	# prepare data
-	trainingSet= []
-	testSet    = []
-	split      = 0.67
+	trainingSet = []
+	testSet     = []
+	split       = 0.67
 	loadDataset('iris.data', split, trainingSet, testSet)
 	print 'Train set: ' + repr(len(trainingSet))
 	print 'Test set: ' + repr(len(testSet))

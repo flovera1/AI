@@ -9,45 +9,32 @@
 #include <cstdlib>
 
 #define NumNodosEntrada 2
-
-
+#define NUM_CASOS_PRUEBA 500
+#define NOMBRE_ARCHIVO_CASOS_PRUEBA NUM_CASOS_PRUEBA.txt
 using namespace std;
- 
 class Red {
- 
   double ** weigth_input_layer ;
   double * weigth_output_layer;
   int num_nodes;
   double tasaAprendizaje;
-
   public:
 		Red(int num_nodes, double tasaAprendizaje);
 		~Red();
-		
 		double feed_forward(double * valor_entrada, double * valores_intermedios);
-		
 		double net(double* weight, double* input, int n);
 		inline double sigmoid(double y);
-		
 		double error_output(double output, double target);
-		
 		double resolve_case(double x_in, double y_in, double target);
 		void resolve_set_cases(double* x, double* y, double* target, int size_arrays);
-		
 		void runTestCase(double X, double Y, double T);
 		double calcularSalida(double x, double y);
-		
 };
-
 double Red::sigmoid(double y){
 	return 1/(1+exp(-y));
 }
-
-
 double Red::error_output(double output, double target){
 	return output*(1-output)*(target-output);
 }
-
 Red::Red(int num_nodes, double tasaAprendizaje){ //constructor
 	this->num_nodes = num_nodes;
 	this-> tasaAprendizaje = tasaAprendizaje;
@@ -201,9 +188,6 @@ double pertenece(double a, double b){
 	
 	return 0;
 }
-
-#define NUM_CASOS_PRUEBA 500
-#define NOMBRE_ARCHIVO_CASOS_PRUEBA NUM_CASOS_PRUEBA.txt
 int main()
 {	
 	string line;

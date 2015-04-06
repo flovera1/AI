@@ -6,31 +6,27 @@ double Red::error_output(double output, double target){
 	return output*(1-output)*(target-output);
 }
 Red::Red(int num_nodes, double tasaAprendizaje){ //constructor
-	this->num_nodes = num_nodes;
-	this-> tasaAprendizaje = tasaAprendizaje;
-	
-	weigth_output_layer = new double[num_nodes+1];
-	weigth_input_layer = new double* [NumNodosEntrada+1];
-	
-	const long max_rand = 1000000;
+	this-> num_nodes                 = num_nodes;
+	this-> tasaAprendizaje           = tasaAprendizaje;
+	// + 1 is coz of the threshold
+	weigth_output_layer              = new double [ num_nodes + 1 ];
+	weigth_input_layer               = new double * [ NumNodosEntrada + 1 ];
+	const long max_rand              = 1000000;
 	srandom(time(NULL));
-	
-	for (int i =0; i<NumNodosEntrada+1;i++){
-		weigth_input_layer[i] = new double[num_nodes];
-		
+	for (int i = 0; i< NumNodosEntrada + 1; i++){
+		weigth_input_layer[i]        = new double[ num_nodes ]; // for each input neuron an array of neurons is associated
 		for (int j = 0; j < num_nodes; j++){
+			// and then assign a random number
 			weigth_input_layer[i][j] = -0.05+ ((double) (rand() % max_rand) / max_rand)/10; 
 		}
 	}
-	
-	for (int i =0; i<num_nodes+1;i++)
-		weigth_output_layer[i] = -0.05+ ((double) (rand() % max_rand) / max_rand)/10; 
-
-	
-	
+	for (int i =0; i<num_nodes+1;i++){
+		//several random numbers to the vector of the output
+		weigth_output_layer[i]       = -0.05+ ((double) (rand() % max_rand) / max_rand)/10; 
+	}
 }
 Red::~Red(){
-	for (int i =0; i<NumNodosEntrada+1;i++){
+	for (int i = 0; i < NumNodosEntrada + 1; i++){
 		delete(weigth_input_layer[i]);
 	}
 	delete(weigth_input_layer);
@@ -38,25 +34,27 @@ Red::~Red(){
 };
 double  Red:: feed_forward(double * valor_entrada, double * valores_intermedios){
 	double acum;
-	for(int i = 0; i < num_nodes; i++){
-		//Calculo de net
-		acum = 0;
+	for(int i = 0; i < num_nodes; i++){ // first neuron with every neuron in the hidden part,
+		                                // second neuron with every neuron in the hidden part, 
+										// and so on
+		//net calculus, hidden part
+		acum       = 0;
 		for (int j = 0 ; j < NumNodosEntrada; j++){
 			/**
 			*i refers to the hidden neuron (hidden neuron).
 			*j refers to the neurons in the input layer (input neuron).
 			*/
-			acum += weigth_input_layer[j][i]*valor_entrada[j]; 
+			acum  += weigth_input_layer[j][i] * valor_entrada[j]; 
 		}	
-		// Aplicacion de la funcion sigmoidal. 
-		valores_intermedios[i] = sigmoid(acum+weigth_input_layer[NumNodosEntrada][i]);
+		// sigmoid function
+		valores_intermedios[i] = sigmoid(acum + weigth_input_layer[NumNodosEntrada][i]);
 	}
-	//calculo del valor final
+	//calculus of the last value
 	acum = 0;
 	for(int k = 0; k < num_nodes; k++){	
-		acum += weigth_output_layer[k]*valores_intermedios[k];
+		acum += weigth_output_layer[k] * valores_intermedios[k];
 	}
-	return sigmoid(acum + weigth_output_layer[num_nodes]);
+	return sigmoid( acum + weigth_output_layer[num_nodes] );
 }  
 double  Red:: calcularSalida(double x, double y){
 	double acum;
@@ -118,9 +116,9 @@ double Red:: resolve_case(double x_in, double y_in, double target){
 	}
 	return valor_salida;
 };
-//entrenamiento
+//training
 void Red::resolve_set_cases(double* x, double* y, double* target, int size_arrays){	
-	for(int i = 0; i<size_arrays; i++){		
+	for(int i = 0; i< size_arrays; i++){		
 		resolve_case(x[i], y[i], target[i]);//el target se inicializa en el main
 	}
 }
@@ -135,10 +133,16 @@ int main(){
 	double x [NUM_CASOS_PRUEBA];
 	double y [NUM_CASOS_PRUEBA];
 	double t [NUM_CASOS_PRUEBA];
+	/*
+	* put the information of the vector(in 500b.txt file) into three arrays
+	* a b and c represents the first value, the second and the A or B of the results
+	* x y and t are the corresponding arrays.
+	*/
 	if (myfile.is_open()){
 		for (int i = 0; i< NUM_CASOS_PRUEBA;i++){
 			getline (myfile,line);
 			stringstream str(line);
+			// a, b and c represents the training vector.
 			string a, b, c;
 			str >> a >> b >> c;
 			x[i] = atof(a.c_str());
@@ -159,48 +163,47 @@ int main(){
 	}
 	double result          = 0;
 	double tasaCorrecto    = 0;
-	double tasaCorrectoMax =0;
-	int numNeuronasMax     =0;
-	int numIteracionesMax  = 0;
+	double tasaCorrectoMax = 0;
+	int numNeuronasMax     = 0;// one of the parameters that we want to control/know the most efficient value
+	int numIteracionesMax  = 0;// one of the parameters that we want to control/know the most efficient value
 	int numCorrectos       = 0;
 	int numIt [5]          = {100,1000,5000,10000,50000};		
-	for (int numNeuronas = 2; numNeuronas<=10;numNeuronas++){
+	for (int numNeuronas = 2; numNeuronas <= 10;numNeuronas++){//from 2 to 10 neurons
 		cout << "Probando con: " << numNeuronas << " neuronas." << endl;
-		for (int numIteraciones = 0; numIteraciones<5; numIteraciones++){
+		for (int numIteraciones = 0; numIteraciones < 5; numIteraciones++){
 			cout << "Probando con: " << numIt[numIteraciones]<< " iteraciones." << endl <<endl;
 			Red red = Red(numNeuronas, 0.005);
 			for(int u = 0; u < numIt[numIteraciones]; u++){
 				red.resolve_set_cases(x, y, t, NUM_CASOS_PRUEBA);
 			}
 			numCorrectos = 0;
-		for(int cx = 0; cx < 100; cx++){
-				for(int cy = 0; cy<100; cy++){		
-				double coorX = (double) cx/100*20;
-				double coorY = (double) cy/100*12;
-				result = red.calcularSalida(coorX,coorY);
-				if (result>.5){
-					result =1;
-				}
-				else{
-					result =0;
+			for(int cx = 0; cx < 100; cx++){
+					for(int cy = 0; cy<100; cy++){		
+					double coorX = (double) cx/100*20;
+					double coorY = (double) cy/100*12;
+					result = red.calcularSalida(coorX,coorY);
+					if (result>.5){
+						result =1;
+					}
+					else{
+						result =0;
+					}	
+					if (pertenece(coorX,coorY)==result){
+						numCorrectos++;
+					}
 				}	
-				if (pertenece(coorX,coorY)==result){
-					numCorrectos++;
-				}
-			}	
-		}
-		tasaCorrecto = (double) numCorrectos/10000;
-			
-		if (tasaCorrecto>tasaCorrectoMax){
-			tasaCorrectoMax = tasaCorrecto;
-			numIteracionesMax = numIt[numIteraciones];
-			numNeuronasMax = numNeuronas;
-			cout << "Tasa correctos max:"<<tasaCorrecto <<endl;
-			cout << "Num iteraciones max:"<<numIteracionesMax <<endl;
-			cout << "Num neuronas max:"<< numNeuronasMax <<endl;				
-			cout << endl;
-		}
-	}
+			}
+			tasaCorrecto = (double) numCorrectos/10000;
+			if (tasaCorrecto>tasaCorrectoMax){
+				tasaCorrectoMax = tasaCorrecto;
+				numIteracionesMax = numIt[numIteraciones];
+				numNeuronasMax = numNeuronas;
+				cout << "Tasa correctos max:"<<tasaCorrecto <<endl;
+				cout << "Num iteraciones max:"<<numIteracionesMax <<endl;
+				cout << "Num neuronas max:"<< numNeuronasMax <<endl;				
+				cout << endl;
+			}
+		}	
 }
 	cout << "FINAL"<<endl;
 	cout << "Tasa correctos max:"<<tasaCorrectoMax <<endl;

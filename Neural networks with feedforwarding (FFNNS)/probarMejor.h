@@ -1,6 +1,6 @@
 /**
-* @description:probarMejor is a program in which is implemented a neural network to solve a problem
-*              the number of neurons vary from 2 to 10 in order to stablish some tests.
+* @description:probarMejor is a program in which is implemented a neural network to solve a problem.
+*              The number of neurons vary from 2 to 10 in order to stablish some tests.
 *			   ONE OF THE OBJECTIVES OF THIS is that you can vary the number of neurons and the 
 *              the number of iterations in your program, once you do that, you know the optimus
 *              quantity of neurons and iterations to your problem.
@@ -23,8 +23,8 @@
 	#define NOMBRE_ARCHIVO_CASOS_PRUEBA NUM_CASOS_PRUEBA.txt
 	using namespace std;
 	class Red {
-	  double ** weigth_input_layer;//
-	  double * weigth_output_layer;//
+	  double ** weigth_input_layer; //Basically the first index refers to the hidden neuron and the second to the input layer
+	  double * weigth_output_layer; //So, we need several resoluts, a vector is required then
 	  int num_nodes;
 	  double tasaAprendizaje;
 	  public:
@@ -32,7 +32,7 @@
 			~Red();//destructore
 			/*
 			* @desc: implementation of the back-prop learning algorithm 
-			*        in which backpropagation is used.
+			*        in which backpropagation is used. See T. Mitchell's book
 			* @param valor_entrada: 
 			* @param valores_intermedios: 
 			*/

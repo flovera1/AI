@@ -1,4 +1,4 @@
-/*
+/**
 *
 */
 import java.util.*;
@@ -36,7 +36,7 @@ public class KMeans_Ex4a{
             dataSet.add( newData );
             minimum = bigNumber;
             for(int i = 0; i < NUM_CLUSTERS; i++){
-                distance = dist(newData, centroids.get(i));
+                distance = dist( newData, centroids.get(i) ); //euclidian distance
                 if(distance < minimum){
                     minimum = distance;
                     cluster = i;
@@ -62,12 +62,12 @@ public class KMeans_Ex4a{
             }
             sampleNumber++;
         }
-        // Now, keep shifting centroids until equilibrium occurs.
+        //keep shifting centroids until equilibrium occurs.
         while(isStillMoving){
             // calculate new centroids.
             for(int i = 0; i < NUM_CLUSTERS; i++){
-                int totalX = 0;
-                int totalY = 0;
+                int totalX         = 0;
+                int totalY         = 0;
                 int totalInCluster = 0;
                 for(int j = 0; j < dataSet.size(); j++){
                     if(dataSet.get(j).cluster() == i){
@@ -85,9 +85,8 @@ public class KMeans_Ex4a{
             isStillMoving = false;
             for(int i = 0; i < dataSet.size(); i++){
                 Data tempData = dataSet.get(i);
-                minimum = bigNumber;
-                for(int j = 0; j < NUM_CLUSTERS; j++)
-                {
+                minimum       = bigNumber;
+                for(int j = 0; j < NUM_CLUSTERS; j++){
                     distance = dist(tempData, centroids.get(j));
                     if(distance < minimum){
                         minimum = distance;
@@ -102,40 +101,27 @@ public class KMeans_Ex4a{
             }
         }
     }
-    /**
-     * // Calculate Euclidean distance.
-     * @param d - Data object.
-     * @param c - Centroid object.
-     * @return - double value.
-     */
     private static double dist(Data d, Centroid c){
         return Math.sqrt(Math.pow((c.Y() - d.Y()), 2) + Math.pow((c.X() - d.X()), 2));
     }    
-    public static void main(String[] args)
-    {
+    public static void main( String[] args ){
         initialize();
         kMeanCluster();
-        
         // Print out clustering results.
-        for(int i = 0; i < NUM_CLUSTERS; i++)
-        {
+        for(int i = 0; i < NUM_CLUSTERS; i++){
             System.out.println("Cluster " + i + " includes:");
-            for(int j = 0; j < TOTAL_DATA; j++)
-            {
+            for(int j = 0; j < TOTAL_DATA; j++){
                 if(dataSet.get(j).cluster() == i){
                     System.out.println("     (" + dataSet.get(j).X() + ", " + dataSet.get(j).Y() + ")");
                 }
-            } // j
+            } 
             System.out.println();
-        } // i
-        
-        // Print out centroid results.
+        } 
+        //centroit
         System.out.println("Centroids finalized at:");
-        for(int i = 0; i < NUM_CLUSTERS; i++)
-        {
+        for(int i = 0; i < NUM_CLUSTERS; i++){
             System.out.println("     (" + centroids.get(i).X() + ", " + centroids.get(i).Y());
         }
         System.out.print("\n");
-        return;
     }
 }

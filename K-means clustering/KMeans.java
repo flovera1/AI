@@ -1,26 +1,39 @@
 /**
-*
+* @description: Clustering 2000 for points 
+* @author: Fernando Lovera flovera1@gmail.com
+* @date: Wed 8 Apr 2015
 */
 import java.util.*;
+import java.awt.*;
+import java.awt.*;
+import java.util.Random;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 public class KMeans{
-    private static final int NUM_CLUSTERS        = 2;      // Total clusters.
-    private static final int TOTAL_DATA          = 7;      // Total data points.
-    private static final double SAMPLES[][]      = new double[][] {{1.0, 1.0}, 
-                                                                {1.5, 2.0}, 
-                                                                {3.0, 4.0}, 
-                                                                {5.0, 7.0}, 
-                                                                {3.5, 5.0}, 
-                                                                {4.5, 5.0}, 
-                                                                {3.5, 4.5}};
+    private static final int NUM_CLUSTERS        = 4;      // Total number of clusters.
+    private static ArrayList<Data> clusters      = new ArrayList<Data>(); //each cluster will need to have 5000 points
+    private static final int TOTAL_DATA          = 2000;   // Total number of data points.
+    private static final int t                   = 2000;   // Integer used to produce a random number.
+    private static final double SAMPLES[][]      = new double[2000][2]; // I'm going to have 2000 points. 
     private static ArrayList<Data> dataSet       = new ArrayList<Data>();
     private static ArrayList<Centroid> centroids = new ArrayList<Centroid>();
     private static void initialize(){
         System.out.println("Centroids initialized at: ");
-        centroids.add(new Centroid(1.0, 1.0)); // lowest set.
-        centroids.add(new Centroid(5.0, 7.0)); // highest set.
+        centroids.add(new Centroid(1.0, 1.0));
+        centroids.add(new Centroid(5.0, 7.0)); 
+        centroids.add(new Centroid(25.0, 30.0));
+        centroids.add(new Centroid(40.0, 20.0));
         System.out.println("     (" + centroids.get(0).X() + ", " + centroids.get(0).Y() + ") ");
         System.out.println("     (" + centroids.get(1).X() + ", " + centroids.get(1).Y() + ") ");
         System.out.print("\n");
+        for(int i = 0; i < 2000; i++){ //first dimension
+            for(int j = 0; j < 2; j++){//second dimension
+                Random rand         = new Random();
+                int  n              = rand.nextInt(50) + 1;
+                SAMPLES[i][j]       = n;
+            }
+        }
     }
     private static void kMeanCluster(){
         final double bigNumber = Math.pow(10, 10);// some big number that's sure to be larger than our data range.
@@ -107,20 +120,21 @@ public class KMeans{
     public static void main( String[] args ){
         initialize();
         kMeanCluster();
-        // Print out clustering results.
         for(int i = 0; i < NUM_CLUSTERS; i++){
             System.out.println("Cluster " + i + " includes:");
             for(int j = 0; j < TOTAL_DATA; j++){
                 if(dataSet.get(j).cluster() == i){
                     System.out.println("     (" + dataSet.get(j).X() + ", " + dataSet.get(j).Y() + ")");
                 }
+                clusters.add(new Data(dataSet.get(j).X(), dataSet.get(j).Y()));
             }
             System.out.println("\n");
+            Points ps                     = new Points(clusters, i);
+            ps.setVisible(true);
         } 
-        //centroit
         System.out.println("Centroids finalized at:");
         for(int i = 0; i < NUM_CLUSTERS; i++){
-            System.out.println("     (" + centroids.get(i).X() + ", " + centroids.get(i).Y());
+            System.out.println("     (" + centroids.get(i).X() + ", " + centroids.get(i).Y() + ")");
         }
         System.out.print("\n");
     }

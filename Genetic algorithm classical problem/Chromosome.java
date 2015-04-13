@@ -2,7 +2,7 @@
 * Genetic Algorithm Node
 */
 import java.util.*;	
-	public class Chromosone {
+	public class Chromosome {
 		// The chromo
 		static int chromoLen             = 5;
 		static Random rand               = new Random();
@@ -16,7 +16,7 @@ import java.util.*;
 		/**
 		* @desc: Constructor that generates a random Chromosome
 		*/
-		public Chromosone(int target) {
+		public Chromosome(int target) {
 			// Create the full buffer
 			for(int y = 0; y < chromoLen; y++) {
 				// Generate a random binary integer
@@ -32,7 +32,7 @@ import java.util.*;
 			// Score the new cromo
 			scoreChromo(target);
 		}				
-		public Chromosone(StringBuffer chromo) { 
+		public Chromosome(StringBuffer chromo) { 
 			this.chromo = chromo; 
 		}
 		// Decode the string
@@ -60,9 +60,9 @@ import java.util.*;
 		/**
 		* @description: first check if we Should we cross over, then, Generate a random position, 
 		*               and,Swap all chars after that position
-		* @param other: the other chromosone to make the crossover
+		* @param other: the other Chromosome to make the crossover
 		*/
-		public final void crossOver(Chromosone other) {
+		public final void crossOver(Chromosome other) {
 			if (rand.nextDouble() <= crossRate){ 
 				int pos = rand.nextInt(chromo.length());
 				for (int x=pos;x<chromo.length();x++) {

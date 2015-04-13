@@ -57,71 +57,63 @@ import java.util.*;
 			if (total == target) score = 0;
 			score = (double)1 / (target - total);
 		}
-		
-		// Crossover bits
+		/**
+		* @description: first check if we Should we cross over, then, Generate a random position, 
+		*               and,Swap all chars after that position
+		* @param other: the other chromosone to make the crossover
+		*/
 		public final void crossOver(Chromosone other) {
-
-			// Should we cross over?
-			if (rand.nextDouble() > crossRate) return;
-			
-			// Generate a random position
-			int pos = rand.nextInt(chromo.length());
-			
-			// Swap all chars after that position
-			for (int x=pos;x<chromo.length();x++) {
-				// Get our character
-				char tmp = chromo.charAt(x);
-				
-				// Swap the chars
-				chromo.setCharAt(x, other.chromo.charAt(x));
-				other.chromo.setCharAt(x, tmp);
+			if (rand.nextDouble() <= crossRate){ 
+				int pos = rand.nextInt(chromo.length());
+				for (int x=pos;x<chromo.length();x++) {
+					char tmp = chromo.charAt(x);					
+					// Swap
+					chromo.setCharAt(x, other.chromo.charAt(x));
+					other.chromo.setCharAt(x, tmp);
+				}
 			}
 		}
-			
-		// Mutation
 		public final void mutate() {
-			for (int x=0;x<chromo.length();x++) {
-				if (rand.nextDouble()<=mutRate) 
+			for (int x = 0; x < chromo.length(); x++) {
+				if (rand.nextDouble() <= mutRate){ 
 					chromo.setCharAt(x, (chromo.charAt(x)=='0' ? '1' : '0'));
+				}
 			}
-		}
-			
-		
-				
+		}		
 		//Add up the contents of the decoded chromo
 		public final int addUp() { 
-			// Decode our chromo
 			String decodedString = decodeChromo();
-			// Total
-			int tot = 0;
-			
-			// Find the first number
-			int ptr = 0;
-			while (ptr<decodedString.length()) { 
+			int tot              = 0;
+			int ptr              = 0;//find the number
+			while (ptr < decodedString.length()) { 
 				char ch = decodedString.charAt(ptr);
 				if (Character.isDigit(ch)) {
-					tot=ch-'0';
+					tot = ch-'0';
 					ptr++;
 					break;
 				} else {
 					ptr++;
 				}
 			}
-			
 			// If no numbers found, return
-			if (ptr==decodedString.length()) return 0;
-			
+			if (ptr == decodedString.length()){
+			 return 0;
+		 	}
 			// Loop processing the rest
 			boolean num = false;
-			char oper=' ';
-			while (ptr<decodedString.length()) {
+			char oper   = ' ';
+			while (ptr < decodedString.length()) {
 				// Get the character
 				char ch = decodedString.charAt(ptr);
-				
 				// Is it what we expect, if not - skip
-				if (num && !Character.isDigit(ch)) {ptr++;continue;}
-				if (!num && Character.isDigit(ch)) {ptr++;continue;}
-			
+				if (num && !Character.isDigit(ch)) {
+					ptr++;
+					continue;
+				}
+				if (!num && Character.isDigit(ch)) {
+					ptr++;
+					continue;
+				}
 				// Is it a number
 				if (num) { 
 					switch (oper) {
@@ -133,36 +125,26 @@ import java.util.*;
 				} else {
 					oper = ch;
 				}			
-				
 				// Go to next character
 				ptr++;
 				num=!num;
 			}
-			
 			return tot;
 		}
-
 		public final boolean isValid() { 
-		
 			// Decode our chromo
-			String decodedString = decodeChromo();
-			
-			boolean num = true;
-			for (int x=0;x<decodedString.length();x++) {
+			String decodedString = decodeChromo();	
+			boolean num          = true;
+			for (int x = 0; x < decodedString.length(); x++) {
 				char ch = decodedString.charAt(x);
-
 				// Did we follow the num-oper-num-oper-num patter
 				if (num == !Character.isDigit(ch)) return false;
-				
 				// Don't allow divide by zero
 				if (x>0 && ch=='0' && decodedString.charAt(x-1)=='/') return false;
-				
-				num = !num;
+				num =! num;
 			}
-			
 			// Can't end in an operator
 			if (!Character.isDigit(decodedString.charAt(decodedString.length()-1))) return false;
-			
 			return true;
 		}
 	}

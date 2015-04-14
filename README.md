@@ -1,2 +1,6 @@
 # AI
-Explanation of how you should run and test the code
+Explanation of what this repository contains:
+
+First things first, the bibliography contains two books which I consider are the real basis
+of what the code is about. 
+<a href="AI/Bibliography">Biobliography</a>

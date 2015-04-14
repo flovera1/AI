@@ -133,7 +133,7 @@
 	</p>
 	</hr>
 	<hr>
-		<li><a href="https://github.com/flovera1/AI/tree/master/instance-based%20learning">Instance based learning. Other way of think about learning</a>
+		<li><a href="https://github.com/flovera1/AI/tree/master/instance-based%20learning">Instance based learning. Other way of thinking about learning</a>
 		</li>
 	<br>
 		Here comes a change of paradigms/change of thinking. So instead of trying to find a function that can maps some data properly(like neural networks or just a neuron like perceptron), we are going to store a bunch of data and form a "data base", so, everytime that we are trying to find a new value, we just try to find to which "register" in our database is more likely to represent that new value.

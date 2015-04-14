@@ -28,13 +28,13 @@ Artificial intelligence repository
 		The general idea is to write a genetic algorithm which input is a number and the outout is 
 		a formula that generate that number just using: '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' and
 		operators such as: '+', '-', '*', '/'.
-		<hr>
+		<br>
 		The code is written in java, so, so far to execute it, we must use a javac command:
 			- javac Chromosome.java
-		<hr>
+		<br>
 		And then:
 			- java Chromosome
-		<hr>
+		<br>
 	</p>
 	</hr>
 	<hr>

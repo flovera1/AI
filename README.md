@@ -176,7 +176,6 @@
 		</li>
 		<br>I am still working in this part of the repository. Coming soon
 	</hr>
-
 	<hr>
 	<li><a href="https://github.com/flovera1/AI/tree/master/robocode">Robocode (one of my favourites)</a>
 		</li>

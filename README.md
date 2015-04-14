@@ -1,15 +1,12 @@
 Artificial intelligence repository
 <p>
 	Content
-</p>
-	<hr>
+</p>	
 		<br><a href="https://github.com/flovera1/AI/tree/master/Bibliography">Biobliography Folder</a>
 		<p>
 			First things first, the bibliography contains two books which I consider are the real basis
 			of what the code is about. 
 		</p>
-	</hr>
-	<hr>
 		<a href="https://github.com/flovera1/AI/tree/master/Decision%20trees">Decision trees</a>
 		<br>
 			<p>
@@ -17,8 +14,6 @@ Artificial intelligence repository
 			utilities that we'll be using later!
 			</p>
 		<br>
-	</hr>
-<hr>
 	<a href="https://github.com/flovera1/AI/tree/master/Genetic%20algorithm%20classical%20problem">Genetic algorithms</a>
 	<br>
 	<p>
@@ -33,7 +28,6 @@ Artificial intelligence repository
 			- java Chromosome
 	</p>
 	<br>
-<hr>
 	<a href="https://github.com/flovera1/AI/tree/master/K-means%20clustering">Clustering</a>
 	<br>
 	<p>
@@ -48,4 +42,3 @@ Artificial intelligence repository
 			- You will have a representation of the points (this open to the use that you give to your clusters, but in my opinion every data should be represented in a simple and graphical way, because if not, what's the point, isn't it?).
 	</p>
 	<br>
-<hr>

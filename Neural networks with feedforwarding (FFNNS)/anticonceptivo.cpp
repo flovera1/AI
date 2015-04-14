@@ -254,7 +254,7 @@ int main(int argc, char* argv[])
 {	
 	if (argc != 5){
 		cout << "Num invalido de parametros" <<endl;
-		cout << "anticonceptivo <num-neuronas> proporcion> <entrada> <salida>" <<endl;
+		cout << "anticonceptivo <num-neuronas> <proporcion> <entrada> <salida>" <<endl;
 		return (0);
 
 	}
@@ -276,17 +276,14 @@ int main(int argc, char* argv[])
 	int set[SIZE_SET][NUM_VALORES_ENTRADA];
 	int target[SIZE_SET];
 	
-	if (myfile.is_open())
-	{
-		for (int i = 0; i< SIZE_SET;i++)
-		{
+	if (myfile.is_open()){
+		for (int i = 0; i < SIZE_SET; i++){
 			getline (myfile,line);
 			stringstream str(line);
 			string s[10];
-		
 			str >> s[0] >> s[1] >> s[2] >> s[3] >> s[4] >> s[5] >> s[6]
 				>> s[7] >> s[8] >> s[9];
-			for (int j = 0; j<NUM_VALORES_ENTRADA; j++){
+			for (int j = 0; j < NUM_VALORES_ENTRADA; j++){
 				set[i][j] = atoi(s[j].c_str());
 			}
 			target[i] = atoi(s[9].c_str());
@@ -295,7 +292,7 @@ int main(int argc, char* argv[])
 		myfile.close();
 	}
 	else 
-		cout << "Unable to open file"; 
+		cout << "Unable to open file \n"; 
 	
 	
 	Red red = Red(numNeuronas,NUM_VALORES_SALIDA,NUM_VALORES_ENTRADA, 0.005);

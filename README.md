@@ -1,12 +1,14 @@
 Artificial intelligence repository
 <hr> 
-Content
+	Content
+</hr>
 <hr>
 	<a href="https://github.com/flovera1/AI/tree/master/Bibliography">Biobliography</a>
 	<br>
 		First things first, the bibliography contains two books which I consider are the real basis
 		of what the code is about. 
 	<br>
+</hr>
 <hr>
 	<a href="https://github.com/flovera1/AI/tree/master/Decision%20trees">Decision trees</a>
 	<br>
@@ -40,7 +42,7 @@ Content
 			- You will have a representation of the points (this open to the use that you give to your clusters, but in my opinion every data should be represented in a simple and graphical way, because if not, what's the point, isn't it?).
 	<br>
 <hr>
-	
+
 
 
 

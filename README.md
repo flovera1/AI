@@ -99,7 +99,8 @@
 		</p>
 	</hr>
 	<hr>
-			<a href="https://github.com/flovera1/AI/tree/master/a%20star">A Star algorithm</a>
+			<li><a href="https://github.com/flovera1/AI/tree/master/a%20star">A Star algorithm</a>
+			</li>
 			<br>
 			<p>
 				Some heuristics and useful programs that can be used in any search problem
@@ -116,18 +117,50 @@
 			</p>
 	</hr>
 	<hr>
-	<a href="https://github.com/flovera1/AI/tree/master/dfsbfssearch">Graph implementation with classical search algorithms such as DFS, BFS, Branch and Bound </a>
+		<li><a href="https://github.com/flovera1/AI/tree/master/dfsbfssearch">Graph implementation with classical search algorithms such as DFS, BFS, Branch and Bound </a>
+		</li>
 	<br>
 	<p>
-	Basically what I was looking for here was to be sure that I covered some of the real basics of artificial intelligence and graph theories.<br>
-	The way to run this code is running the program called: GraphImplementation.java
+		Basically what I was looking for here was to be sure that I covered some of the real basics of artificial intelligence and graph theories.<br>
+		The way to run this code is running the program called: GraphImplementation.java
 	<br>
-	To compile:<br>
-		- javac GraphImplementation.java
-	To execute:<br>
-		- java GraphImplementation
-		<br>
-		And that's it.
+		To compile:<br>
+			- javac GraphImplementation.java
+		To execute:<br>
+			- java GraphImplementation
+			<br>
+			And that's it.
 	</p>
 	</hr>
 	<hr>
+		<li><a href="https://github.com/flovera1/AI/tree/master/instance-based%20learning">Instance based learning. Other way of think about learning</a>
+		</li>
+	<br>
+		Here comes a change of paradigms/change of thinking. So instead of trying to find a function that can maps some data properly(like neural networks or just a neuron like perceptron), we are going to store a bunch of data and form a "data base", so, everytime that we are trying to find a new value, we just try to find to which "register" in our database is more likely to represent that new value.
+		In this new way of thinking we are going to follow the kNN algorithm.
+	<br>
+		How do you execute it ?
+	<br>
+		This part of the rep was written in Python.
+	<br>
+		running with Python:<br>
+		python kNN.py
+	<br>
+		The output will depend on the whatever main function you are managing and how you represent your data. In this case, the data is found in iris.data
+	</hr>
+	<hr>
+		<li><a href="https://github.com/flovera1/AI/tree/master/nQueens">nQueens</a>
+		</li>
+		<br>
+		nQueens is a problem which consist in positioning n queens in a board, in a way that non of them kill each other. Basically what you have to do is to be aware of the constraints and conditions of the problem, and of course know how a queen moves. In this implementation, those constraints are checked from left to right and from top to bottom.
+		<br>
+		The code was written in C++ again and you know how to run it:
+		<br>
+		compiling: 
+		<br>
+			- g++ nqueens_backtracking.cpp
+		<br>
+		running:
+		<br>
+			- ./nqueens_backtracking
+	</hr>

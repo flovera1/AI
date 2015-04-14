@@ -163,4 +163,23 @@
 		running:
 		<br>
 			- ./nqueens_backtracking
+		<br>
+		REALLY important: the concept of backtracking is a steping stone in artificial intelligence. Here is an example of a simple implementation of it (nQueens.cpp).
+	</hr>
+	<hr>
+	<li><a href="https://github.com/flovera1/AI/tree/master/proy1">proy1 <- is more about neural networks.</a>
+		</li>
+		<br>I am still working in this part of the repository. Coming soon
+	</hr>
+	<hr>
+	<li><a href="https://github.com/flovera1/AI/tree/master/proyGeneticos">proyGeneticos <- is more about gentic algorithms</a>
+		</li>
+		<br>I am still working in this part of the repository. Coming soon
+	</hr>
+
+	<hr>
+	<li><a href="https://github.com/flovera1/AI/tree/master/robocode">Robocode (one of my favourites)</a>
+		</li>
+		<br>I am still working in this part of the repository. Coming soon
+
 	</hr>

@@ -20,7 +20,7 @@ Artificial intelligence repository
 		<br>
 	</hr>
 	<hr>
-	<a href="https://github.com/flovera1/AI/tree/master/Genetic%20algorithm%20classical%20problem">Genetic algorithms</a>
+	<a href="https://github.com/flovera1/AI/tree/master/Genetic%20algorithm%20classical%20problem">Genetic algorithms-classical example</a>
 	<br>
 	<p>
 		This part of the repository tries to explain what a genetic algorithm is and how "evolution" occurs.
@@ -33,4 +33,21 @@ Artificial intelligence repository
 		And then:
 			- java Chromosome
 	</p>
+	</hr>
+	<hr>
+	<br>
+	<a href="https://github.com/flovera1/AI/tree/master/K-means%20clustering">Clustering</a>
+	<br>
+	<p>
+		Clustering is one of my favorites subjects in artificial intelligence. In this folder you will find an implementation of the K-Means clustering (where K represents the number of the clusters). The data for this case are points(which were generated with "random" numbers), and I did some graphical implementation, so, every cluster was visible (in a plot with a specific color). The code is really straight and simple.
+		To execute it, you need to have Java installed.
+		In order to compile the code:
+			- javac KMeans.java
+		and to execute:
+			- java KMeans
+		The output of the code allows you to do two things: 
+			- You will have the numbers classified in the cluster in your bash
+			- You will have a representation of the points (this open to the use that you give to your clusters, but in my opinion every data should be represented in a simple and graphical way, because if not, what's the point, isn't it?).
+	</p>
+	<br>	
 	</hr>

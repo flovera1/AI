@@ -1,4 +1,4 @@
-Artificial intelligence repository
+<h3><b>Artificial intelligence repository</b>
 	<br>Content</br>
 	<hr>
 		<br>
@@ -30,9 +30,11 @@ Artificial intelligence repository
 		operators such as: '+', '-', '*', '/'.
 		<br>
 		The code is written in java, so, so far to execute it, we must use a javac command:
+		<br>
 			- javac Chromosome.java
 		<br>
 		And then:
+		<br>
 			- java Chromosome
 		<br>
 	</p>
@@ -60,10 +62,12 @@ Artificial intelligence repository
 	</hr>
 	<hr>
 		<br>
-		<li><a href="https://github.com/flovera1/AI/tree/master/Neural%20networks%20with%20feedforwarding%20(FFNNS)">NNFF (Neural Network with Feed Forward)</a>
+		<li>
+			<a href="https://github.com/flovera1/AI/tree/master/Neural%20networks%20with%20feedforwarding%20(FFNNS)">NNFF (Neural Network with Feed Forward)</a>
+		</li>
 		<p>
-		Abstraction of the problem:
-		Given a point (x_coordinate, y_coordinate) in the cartesian plane, inside the rectangle (0,0) and (20, 12), classify if the point is inside the circle with center in (10,8) and radius 3.
+			<b>Abstraction of the problem:</b><br>
+			Given a point (x_coordinate, y_coordinate) in the cartesian plane, inside the rectangle (0,0) and (20, 12), classify if the point is inside the circle with center in (10,8) and radius 3.
 		</p>
 		<p>
 		This code was actually a project in my bachelor. <br>
@@ -93,5 +97,37 @@ Artificial intelligence repository
 			- ./anticonceptivo 16 0.669 1000.txt file.out
 		<br>
 		</p>
-		</li>
 	</hr>
+	<hr>
+			<a href="https://github.com/flovera1/AI/tree/master/a%20star">A Star algorithm</a>
+			<br>
+			<p>
+				Some heuristics and useful programs that can be used in any search problem
+			</p>
+			<br>
+			<p>
+				This is java code, so, the way to compile is using javac command, for example:
+				<br>
+					-javac AStarHeuristic.java
+				<br>
+				And the way to execute in this case would be:
+				<br>
+					-java AStarHeuristic
+			</p>
+	</hr>
+	<hr>
+	<a href="https://github.com/flovera1/AI/tree/master/dfsbfssearch">Graph implementation with classical search algorithms such as DFS, BFS, Branch and Bound </a>
+	<br>
+	<p>
+	Basically what I was looking for here was to be sure that I covered some of the real basics of artificial intelligence and graph theories.<br>
+	The way to run this code is running the program called: GraphImplementation.java
+	<br>
+	To compile:<br>
+		- javac GraphImplementation.java
+	To execute:<br>
+		- java GraphImplementation
+		<br>
+		And that's it.
+	</p>
+	</hr>
+	<hr>

@@ -147,4 +147,25 @@ import java.util.*;
 			if (!Character.isDigit(decodedString.charAt(decodedString.length()-1))) return false;
 			return true;
 		}
+			//---- Chomosone Class -----
+	private Chromosone selectMember(ArrayList l) { 
+
+		// Get the total fitness		
+		double tot=0.0;
+		for (int x=l.size()-1;x>=0;x--) {
+			double score = ((Chomosone)l.get(x)).score;
+			tot+=score;
+		}
+		double slice = tot*rand.nextDouble();
+		
+		// Loop to find the node
+		double ttot=0.0;
+		for (int x=l.size()-1;x>=0;x--) {
+			Chomosone node = (Chomosone)l.get(x);
+			ttot+=node.score;
+			if (ttot>=slice) { l.remove(x); return node; }
+		}
+		
+		return (Chomosone)l.remove(l.size()-1);
 	}
+}

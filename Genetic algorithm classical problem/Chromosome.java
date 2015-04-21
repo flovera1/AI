@@ -13,6 +13,7 @@ import java.util.*;
 		public StringBuffer decodeChromo = new StringBuffer(chromoLen * 4);
 		public double score              = 0.0;
 		public int total                 = 0;
+		public Chromosome(){};
 		/**
 		* @desc: Constructor that generates a random Chromosome
 		*/
@@ -58,14 +59,15 @@ import java.util.*;
 			score = (double)1 / (target - total);
 		}
 		/**
-		* @description: first check if we Should we cross over, then, Generate a random position, 
-		*               and,Swap all chars after that position
+		* @description: first check if we Should cross over, then, Generate a random position, 
+		*               and,Swap all chars after that position.
 		* @param other: the other Chromosome to make the crossover
+		* @output : void. You just swap values in the chromosomes.
 		*/
 		public final void crossOver(Chromosome other) {
 			if (rand.nextDouble() <= crossRate){ 
 				int pos = rand.nextInt(chromo.length());
-				for (int x=pos;x<chromo.length();x++) {
+				for (int x = pos; x < chromo.length(); x++) {
 					char tmp = chromo.charAt(x);					
 					// Swap
 					chromo.setCharAt(x, other.chromo.charAt(x));
@@ -73,6 +75,13 @@ import java.util.*;
 				}
 			}
 		}
+		/**
+		* @description: when you are mutating, then what is going to happen is that you are going to change
+		*   	 	 	'0s' for '1s' and '1s' for '0s' from one point forward in the chromosome.
+		* @param: void
+		* @output: void. You just change the bits
+		*
+		*/
 		public final void mutate() {
 			for (int x = 0; x < chromo.length(); x++) {
 				if (rand.nextDouble() <= mutRate){ 
@@ -80,10 +89,18 @@ import java.util.*;
 				}
 			}
 		}		
-		//Add up the contents of the decoded chromo
+		/**
+		* @description: basically when you have something in the decoded mode, for example:
+		*     	 	 	decoded = '6+5'
+		*  	  	  	  	what's going to happen is that addUp will scan that string and add the content
+		* 	  	  	 	or subtract, multiply, or divide (depending on the operation), this is made
+		*   	 	  	by putting the int value in the variable tot and using ptr to move forward in the
+		*    	 	  	string, checking if the char is an operator(save the operator in variable var)
+		* 	 	 	 	or a number (doing the switch case).
+		*/		
 		public final int addUp() { 
 			String decodedString = decodeChromo();
-			int tot              = 0;
+			int tot              = 0;	
 			int ptr              = 0;//find the number
 			while (ptr < decodedString.length()) { 
 				char ch = decodedString.charAt(ptr);
@@ -131,14 +148,21 @@ import java.util.*;
 			}
 			return tot;
 		}
+		/**
+		* @description: isValid proves that the pattern number - operator - number - operator - number and
+		*   	 	 	so on, is followed.
+		* @return: True if the pattern was followed.
+		*  	  	   False otherwise.
+		* @param: void.
+		*/
 		public final boolean isValid() { 
 			// Decode our chromo
 			String decodedString = decodeChromo();	
-			boolean num          = true;
+			boolean num          = true; // it has the value true when the character is a number.
 			for (int x = 0; x < decodedString.length(); x++) {
 				char ch = decodedString.charAt(x);
 				// Did we follow the num-oper-num-oper-num patter
-				if (num == !Character.isDigit(ch)) return false;
+				if (num == !Character.isDigit(ch)) return false;// if the first character is not a number
 				// Don't allow divide by zero
 				if (x>0 && ch=='0' && decodedString.charAt(x-1)=='/') return false;
 				num =! num;

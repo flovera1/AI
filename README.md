@@ -5,8 +5,8 @@
 		<li><a href="https://github.com/flovera1/AI/tree/master/Bibliography">Biobliography Folder</a>
 		</li>
 		<p>
-			First things first, the bibliography contains two books which I consider are the real basis
-			of what the code is about. 
+			First things first, the bibliography contains all the books that I consider are the real basis
+			of what the code is about. And in general, what AI is about.
 		</p>
 	</hr>
 	<hr>

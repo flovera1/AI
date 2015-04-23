@@ -10,14 +10,6 @@
 		</p>
 	</hr>
 	<hr>
-		<li><a href="https://github.com/flovera1/AI/tree/master/Decision%20trees">Decision trees</a>
-		</li>
-			<p>
-			This part of the repository is not completely ready, but there is some code that is part of the
-			utilities that we'll be using later!
-			</p>
-	</hr>
-	<hr>
 	<li><a href="https://github.com/flovera1/AI/tree/master/Genetic%20algorithm%20classical%20problem">
 	Genetic algorithms-classical example</a>
 	</li>

@@ -43,7 +43,6 @@
 		in this code I implemented the descendent algorithm for two variables.
 		For several variables I'd recommend use the same idea, changing as many arguments as
 		it's needed.
-
 		<br>
 		The code is written in C++, so, to execute it you need to compile with C++ compiler<br>
 			- g++ gradient.cpp -o gradient

@@ -83,14 +83,18 @@ void leastSqrRegression(struct Point* xyCollection, int dataSize){
 }
 int main(){
 	int totalOfPoints = 20;
-	for(int i = 0; i < totalOfPoints; i++){
+	//for(int i = 0; i < totalOfPoints; i++){
+
+
 		double d1 = rand() % 5;
 		double d2 = rand() % 5;
+		cout << "X: "<<d1;
+		cout << "Y: "<<d2;
 		Point* p = new Point();
 		p->x = d1;
 		p->y = d2;
 		leastSqrRegression(p, 20);
-	}
+	//}
 	Point *p0 = new Point();
 	Point *p1 = new Point();
 	Point *p2 = new Point();

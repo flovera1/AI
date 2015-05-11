@@ -17,15 +17,9 @@
 #include <stdio.h>
 using namespace std;
 
-struct Point{
-	double x;
-	double y;
-};
-void leastSqrRegression(struct Point* xyCollection, int dataSize){
-	if(xyCollection == NULL || dataSize == 0){
-		printf("Empty data set!\n");
-		return;
-	}
+float x[15];
+float y[15];
+void leastSqrRegression(int dataSize){
 	double SUMx        = 0;
 	double SUMy        = 0;
 	double SUMxy       = 0; 
@@ -41,10 +35,10 @@ void leastSqrRegression(struct Point* xyCollection, int dataSize){
 	double Rsqr        = 0; // coeficient of determination
 	for(int i = 0; i < dataSize; i++){
 		//sum of x's, y's and squared x*y
-		SUMx  += (xyCollection + i)->x;
-		SUMy  += (xyCollection + i)->y;
-		SUMxy += (xyCollection + i)->x * (xyCollection + i)->y;
-		SUMxx += (xyCollection + i)->x * (xyCollection + i)->x;
+		SUMx  += x[i];
+		SUMy  += y[i];
+		SUMxy += x[i] * y[i];
+		SUMxx += x[i] * x[i];
 	}
 	//calculate the means 
 	AVGx        = SUMx / dataSize;
@@ -61,15 +55,14 @@ void leastSqrRegression(struct Point* xyCollection, int dataSize){
    	printf ("   Original (x,y)   (y_i - y_avg)^2     (y_i - a_o - a_1*x_i)^2\n");
    	printf ("------------------------------------------------------------\n");
    	for(int i = 0; i < dataSize; i++){
-   		Yres = pow(((xyCollection + i)->y - y_intercept - (slope * (xyCollection + i)->x)), 2);
+   		Yres = pow(y[i] - y_intercept - (slope * x[i]), 2);
    	    //sum of (y_i - a0 - a1 * x_i)^2
       	SUM_Yers += Yres;
       	//current residue squared (y_i - AVGy)^2
-      	res = pow((xyCollection + i)->y - AVGy, 2);
+      	res = pow(y[i] - AVGy, 2);
       	//sum of squared residues
       	SUMres += res;
-      	printf ("   (%0.2f %0.2f)      %0.5E         %0.5E\n", 
-       	(xyCollection + i)->x, (xyCollection + i)->y, res, Yres);
+      	printf ("   (%0.2f %0.2f)      %0.5E         %0.5E\n", x[i], y[i], res, Yres);
    	}
    //calculate r^2 coefficient of determination
    Rsqr = (SUMres - SUM_Yers) / SUMres;
@@ -82,25 +75,13 @@ void leastSqrRegression(struct Point* xyCollection, int dataSize){
    printf("Correlation coefficient(r) = %0.5E\t\n", sqrt(Rsqr));
 }
 int main(){
-	int totalOfPoints = 20;
-	//for(int i = 0; i < totalOfPoints; i++){
-
-
-		double d1 = rand() % 5;
-		double d2 = rand() % 5;
-		cout << "X: "<<d1;
-		cout << "Y: "<<d2;
-		Point* p = new Point();
-		p->x = d1;
-		p->y = d2;
-		leastSqrRegression(p, 20);
-	//}
-	Point *p0 = new Point();
-	Point *p1 = new Point();
-	Point *p2 = new Point();
-	Point *p3 = new Point();
-	Point *p4 = new Point();
-
+	int totalOfPoints = 15;
+	for(int i = 0; i < totalOfPoints; i++){
+		x[i]         = rand() % 5;
+		y[i]         = rand() % 5;
+	}
+	leastSqrRegression(totalOfPoints);
+	
 	return 0;
 }
 

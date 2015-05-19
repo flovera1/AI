@@ -31,7 +31,7 @@ int main(){
 	srand((unsigned)time(0)); //seed the generator with system time.
 	initWeights();
 	initData();
-	// train the betwork
+	// train the Network
 	for(int j = 0; j <= numEpochs; j++){
 		for(int i = 0; i <= numPatterns; i++){
 			// select a pattern at random
@@ -50,6 +50,7 @@ int main(){
 	displayResults();
 	return 0;
 }
+
 void initWeights(){
 	// initialize weights to random values
 	for(int j = 0; j < numHidden; j++){
@@ -67,6 +68,11 @@ void initData(){
 	* 	An extra input vale of 1 is also added to act as
 	*   the bias.
 	* 	The output must lie in the range -1 to 1.
+	*	The 0 is like -1
+	*	1 xor 1   = -1 = 0
+	*	1 xor -1  = 1 
+	*	-1 xor -1 = -1
+	*	-1 xor 1  = 1
 	*/
 	trainInputs[0][0]   =  1;
     trainInputs[0][1]   = -1;
@@ -89,19 +95,15 @@ void initData(){
     trainOutput[3]      = -1;
 }
 void calcNet(){
-// Calculates values for Hidden and Output nodes.
+	// Calculates values for Hidden and Output nodes.
     for(int i = 0; i < numHidden; i++){
 	  hiddenVal[i] = 0.0;
-
         for(int j = 0; j < numInputs; j++){
 	        hiddenVal[i] = hiddenVal[i] + (trainInputs[patNum][j] * weightsIH[j][i]);
         }
-
-        hiddenVal[i] = tanh(hiddenVal[i]);
+        hiddenVal[i] = tanh(hiddenVal[i]); // tangent with x radians
     }
-
     outPred = 0.0;
-
     for(int i = 0; i < numHidden; i++){
         outPred = outPred + hiddenVal[i] * weightsHO[i];
     }

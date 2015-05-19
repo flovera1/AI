@@ -3,19 +3,19 @@
 #include <ctime>
 #include <cstdlib>
 using namespace std;
-const int numInputs   = 3;    // Number of input nodes, + the bias input
-const int numPatterns = 4;    // Input patterns for XOR experiment
-const int numHidden   = 4;
-const int numEpochs   = 200;
-const double LR_IH    = 0.7;  // learning rate, input to hidden weights.
-const double LR_HO    = 0.07; // learning rate, hidden to output weights.
-int patNum            = 0;
-double errThisPat     = 0.0;
-double outPred        = 0.0; // "Expected" output values
-double RMSerror       = 0.0; // Root mean squared error.
-double hiddenVal[numHidden] = {0.0}; // hidden node outputs
+const int numInputs          = 3;    // Number of input nodes, + the bias input
+const int numPatterns        = 4;    // Input patterns for XOR experiment
+const int numHidden          = 4;
+const int numEpochs          = 200;
+const double LR_IH           = 0.7;  // learning rate, input to hidden weights.
+const double LR_HO           = 0.07; // learning rate, hidden to output weights.
+int patNum                   = 0;
+double errThisPat            = 0.0;
+double outPred               = 0.0; // "Expected" output values
+double RMSerror              = 0.0; // Root mean squared error.
+double hiddenVal[numHidden]  = {0.0}; // hidden node outputs
 double weightsIH[numInputs][numHidden]; // input to Hidden weights
-double weiightsHO[numHidden] = {0.0}; // Hidden to Output weights.
+double weightsHO[numHidden]  = {0.0}; // Hidden to Output weights.
 int trainInputs[numPatterns][numInputs];
 int trainOutput[numPatterns]; // "actual" output values
 //Functions prototypes

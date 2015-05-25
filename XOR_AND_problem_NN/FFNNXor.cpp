@@ -14,7 +14,7 @@ double errThisPat            = 0.0;
 double outPred               = 0.0; // "Expected" output values
 double RMSerror              = 0.0; // Root mean squared error.
 double hiddenVal[numHidden]  = {0.0}; // hidden node outputs
-double weightsIH[numInputs][numHidden]; // input to Hidden weights
+double weightsIH[numInputs][numHidden]; // input to Hidden weights the x's are the input an y's are the weights
 double weightsHO[numHidden]  = {0.0}; // Hidden to Output weights.
 int trainInputs[numPatterns][numInputs];
 int trainOutput[numPatterns]; // "actual" output values
@@ -96,6 +96,11 @@ void initData(){
 }
 void calcNet(){
 	// Calculates values for Hidden and Output nodes.
+	//numHidden is the number of neurons hidden (4 in this case).
+	//hiddenVal is the output of the neuron.
+	/*
+	* first calculate the output of the hidden neuron
+	*/
     for(int i = 0; i < numHidden; i++){
 	  hiddenVal[i] = 0.0;
         for(int j = 0; j < numInputs; j++){
@@ -112,7 +117,6 @@ void calcNet(){
 }
 void WeightChangesHO(){
 //Adjust the Hidden to Output weights.
-
     for(int k = 0; k < numHidden; k++){
         double weightChange = LR_HO * errThisPat * hiddenVal[k];
         weightsHO[k] = weightsHO[k] - weightChange;
@@ -126,17 +130,14 @@ void WeightChangesHO(){
     }
 }
 void WeightChangesIH(){
-// Adjust the Input to Hidden weights.
-
+	// Adjust the Input to Hidden weights.
     for(int i = 0; i < numHidden; i++){
-
         for(int k = 0; k < numInputs; k++){
-
-            double x = 1 - (hiddenVal[i] * hiddenVal[i]);
-            x = x * weightsHO[i] * errThisPat * LR_IH;
-            x = x * trainInputs[patNum][k];
+            double x            = 1 - (hiddenVal[i] * hiddenVal[i]);
+            x                   = x * weightsHO[i] * errThisPat * LR_IH;
+            x                   = x * trainInputs[patNum][k];
             double weightChange = x;
-            weightsIH[k][i] = weightsIH[k][i] - weightChange;
+            weightsIH[k][i]     = weightsIH[k][i] - weightChange;
         }
     }
 }

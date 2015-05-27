@@ -1,4 +1,5 @@
 #include "probarMejor.h"
+
 double Red::sigmoid(double y){
 	return 1/(1+exp(-y));
 }

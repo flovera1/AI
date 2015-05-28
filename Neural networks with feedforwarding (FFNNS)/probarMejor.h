@@ -24,12 +24,12 @@
 	using namespace std;
 	class Red {
 	  double ** weigth_input_layer; //Basically the first index refers to the hidden neuron and the second to the input layer
-	  double * weigth_output_layer; //So, we need several resoluts, a vector is required then
+	  double * weigth_output_layer; //So, we need several results, a vector is required then
 	  int num_nodes;
 	  double tasaAprendizaje;
 	  public:
 			Red(int num_nodes, double tasaAprendizaje);//constructor
-			~Red();//destructore
+			~Red();//destructor
 			/*
 			* @desc: implementation of the back-prop learning algorithm 
 			*        in which backpropagation is used. See T. Mitchell's book

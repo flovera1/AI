@@ -1,0 +1,30 @@
+Con archivo: 500.txt
+ ejemplos mal clasificados: 0
+ numero de elementos fuera del circulo: 434
+ tasa aciertos:0.883
+ aciertos:8830
+Con archivo: 1000.txt
+ ejemplos mal clasificados: 0
+ numero de elementos fuera del circulo: 873
+ tasa aciertos:0.883
+ aciertos:8830
+Con archivo: 2000.txt
+ ejemplos mal clasificados: 0
+ numero de elementos fuera del circulo: 1751
+ tasa aciertos:0.883
+ aciertos:8830
+Con archivo: 500b.txt
+ ejemplos mal clasificados: 0
+ numero de elementos fuera del circulo: 255
+ tasa aciertos:0.9753
+ aciertos:9753
+Con archivo: 1000b.txt
+ ejemplos mal clasificados: 0
+ numero de elementos fuera del circulo: 497
+ tasa aciertos:0.9794
+ aciertos:9794
+Con archivo: 2000b.txt
+ ejemplos mal clasificados: 0
+ numero de elementos fuera del circulo: 1007
+ tasa aciertos:0.9876
+ aciertos:9876

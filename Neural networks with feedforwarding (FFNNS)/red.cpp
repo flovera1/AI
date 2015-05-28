@@ -86,7 +86,8 @@ double  Red:: feed_forward(double * valor_entrada, double * valores_intermedios)
 
 /**
 * New parameters, intermediate values are 'hidden' in the function
-* 
+* This is actually the function that you use to 
+* see that you are learning
 */
 double  Red:: calcularSalida(double x, double y){
 	double acum;
@@ -98,7 +99,7 @@ double  Red:: calcularSalida(double x, double y){
 		//calculate the whole net
 		acum = 0;
 		for (int j = 0 ; j < NumNodosEntrada; j++){
-			acum+=weigth_input_layer[j][i] * valor_entrada[j];
+			acum += weigth_input_layer[j][i] * valor_entrada[j];
 		}
 		// Apply sigmoid function
 		valores_intermedios[i] = sigmoid(acum+weigth_input_layer[NumNodosEntrada][i]);
@@ -155,6 +156,13 @@ void Red::resolve_set_cases(double* x, double* y, double* target, int size_array
 		resolve_case(x[i], y[i], target[i]);//el target se inicializa en el main
 	}
 }
+/**
+* We want to see here that the point (a, b) belongs to the circle with
+* equation:
+* (x-10)^2 + (y-8)^2 = 9
+* if ((10-a)*(10-a) + (8-b)*(8-b) <= 9) is true => the point belongs to the 
+* circle.
+*/
 double pertenece(double a, double b){
 	if ((10-a)*(10-a) + (8-b)*(8-b) <= 9)
 		return 1;
@@ -162,31 +170,35 @@ double pertenece(double a, double b){
 }
 int main(){	
 	string line;
-	string numIt [6]      = {"500.txt","1000.txt","2000.txt","500b.txt","1000b.txt","2000b.txt",};
-	string afueraA [6]    = {"500a.dat","1000a.dat","2000a.dat","500ba.dat","1000ba.dat","2000ba.dat",};
-	string adentroA [6]   = {"500b.dat","1000b.dat","2000b.dat","500bb.dat","1000bb.dat","2000bb.dat",};
+	string numIt [6]      = {"500.txt","1000.txt","2000.txt","500b.txt","1000b.txt","2000b.txt"};
+	string afueraA [6]    = {"500a.dat","1000a.dat","2000a.dat","500ba.dat","1000ba.dat","2000ba.dat"};
+	string adentroA [6]   = {"500b.dat","1000b.dat","2000b.dat","500bb.dat","1000bb.dat","2000bb.dat"};
 	int numCasosPrueba[6] = {500,1000,2000,500,1000,2000};
 	ofstream resultados;
 	resultados.open("meh.txt");
-	for (int numArchivo = 0; numArchivo<6;numArchivo++){
-		ifstream myfile ( numIt [numArchivo].c_str());
+	for (int numArchivo = 0; numArchivo<6; numArchivo++){
+		ifstream myfile (numIt [numArchivo].c_str()); // open the file with the training set
 		cout << "Con archivo: " << numIt [numArchivo] << endl;
 		resultados << "Con archivo: " << numIt [numArchivo] << endl;
 		ofstream adentros;
 		ofstream afuera;
 		afuera.open (afueraA[numArchivo].c_str());
 		adentros.open (adentroA[numArchivo].c_str());
- 		double x [numCasosPrueba[numArchivo]];
-		double y [numCasosPrueba[numArchivo]];
-		double t [numCasosPrueba[numArchivo]];
+ 		double x [numCasosPrueba[numArchivo]]; // first parameter (x coordinate), the size of the array has to be equal to the size of test file  
+		double y [numCasosPrueba[numArchivo]]; // second parameter (y coordinate), the size of the array has to be equal to the size of the test file
+		double t [numCasosPrueba[numArchivo]]; // target (A, B values), the size of the array has to be equal to the size of the test file
 		if (myfile.is_open()){
+            /**
+            * iteration to fill the arrays x, y(coordinates) and t(target)
+            */
 			for (int i = 0; i< numCasosPrueba[numArchivo];i++){
-				getline (myfile,line);
+				getline (myfile,line); //store the lines in the string "line"
 				stringstream str(line);
 				string a, b, c;
 				str >> a >> b >> c;
-				x[i] = atof(a.c_str());
-				y[i] = atof(b.c_str());
+				x[i] = atof(a.c_str());// first coordinate
+				y[i] = atof(b.c_str());//second coordinate
+                //we need a switch-case for the target, in this case two cases
 				switch (c.c_str()[0]){
 					case 'A':
 						t[i]=0;
@@ -202,14 +214,14 @@ int main(){
 			cout << "Unable to open file"; 
 		double result    = 0;	
 		int numCorrectos = 0;
-		Red red          = Red(8, 0.005);
+		Red red          = Red(8, 0.005); //create the neural net
 		for(int u = 0; u < 50000; u++){
-			red.resolve_set_cases(x, y, t, numCasosPrueba[numArchivo]);
+			red.resolve_set_cases(x, y, t, numCasosPrueba[numArchivo]); //and solve it
 		}
 		int cont  = 0;
 		int cont2 = 0;
 		for(int u = 0; u < numCasosPrueba[numArchivo]; u++){
-			if (pertenece(x[u], y[u])!=t[u]){
+			if (pertenece(x[u], y[u]) != t[u]){
 				cont++;
 			}
 			if (t[u]==0)
@@ -222,20 +234,20 @@ int main(){
 		numCorrectos = 0;
 		for(int cx = 0; cx < 100; cx++){
 				for(int cy = 0; cy<100; cy++){
-				double coorX = (double) cx/100*20;
-				double coorY = (double) cy/100*12;
-				result = red.calcularSalida(coorX,coorY);
-				if (result>.5){
-					result =1;
-					adentros<<coorX<< " " << coorY <<endl;
-				}
-				else{
-					result =0;
-					afuera<<coorX<< " " << coorY <<endl;
-				}	
-				if (pertenece(coorX,coorY)==result){
-					numCorrectos++;
-				}
+                    double coorX = (double) cx/100*20;
+                    double coorY = (double) cy/100*12;
+                    result = red.calcularSalida(coorX,coorY); // return the sigmoid!
+                    if (result > 0.5){
+                        result =1;
+                        adentros << coorX << " " << coorY <<endl;
+                    }
+                    else{
+                        result = 0;
+                        afuera << coorX << " " << coorY <<endl;
+                    }	
+                    if (pertenece(coorX,coorY) == result){
+                        numCorrectos++;
+                    }
 			}	
 		}
 		adentros.close ();

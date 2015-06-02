@@ -1,0 +1,8 @@
+One of the most important things in ML is how to acquire, label and organize our data, as well as figure out which machine learning algorithm to use.
+One of the most easy and important sites is:
+http://www.scc.com/
+
+To get company data:
+sec.gov, 
+finance.yahoo.com
+

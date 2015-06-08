@@ -16,7 +16,7 @@ contains the data to detect faces
 """
 # Read the image
 image = cv2.imread(imagePath)
-gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+gray  = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 """
 Read the image and convert it to grayscale.

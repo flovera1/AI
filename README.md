@@ -59,7 +59,7 @@
 	</li>
 	<br>
 	<p>
-		Clustering is one of my favorites subjects in artificial intelligence. In this folder you will find an implementation of the K-Means clustering (where K represents the number of the clusters). The data for this case are points(which were generated with "random" numbers), and I did some graphical implementation, so, every cluster was visible (in a plot with a specific color). The code is really straight and simple.
+		Clustering is one of my favourites subjects in artificial intelligence. In this folder you will find an implementation of the K-Means clustering (where K represents the number of the clusters). The data for this case are points(which were generated with "random" numbers), and I did some graphical implementation, so, every cluster was visible (in a plot with a specific color). The code is really straight and simple.
 		To execute it, you need to have Java installed.
 		<br>
 		In order to compile the code:
@@ -84,7 +84,7 @@
 			Given a point (x_coordinate, y_coordinate) in the cartesian plane, inside the rectangle (0,0) and (20, 12), classify if the point is inside the circle with center in (10,8) and radius 3.
 		</p>
 		<p>
-		This code was actually a project in my bachelor. <br>
+		This code was actually a project in my bachelor's. <br>
 		The representation of a the regular neural network with one inner(hidden) layer. 
 		The idea here is that you generate the numbers with a prolog program(generarNumeros.pl), so the txt files represent the training sets. <br>
 		<br>
@@ -92,7 +92,7 @@
 		The program called: <br>
 			-probarMejor.cpp <br>
 		it represents the neural network and in it we are trying to build the net and figure out how many neurons and iterations we will need to learn.
-		This is one of my favorite pieces of code.
+		This is one of my favourite pieces of code.
 		The way to compile the code is as follow:<br>
 			- g++ probarMejor.cpp -o probarMejor <br>
 		And then to execute the code:
